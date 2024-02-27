@@ -4,12 +4,12 @@
   "description": "Helps to edit BS articles",
   "version": "1.0",
   "icons": {
-    "16": "favicon.png",
-    "32": "favicon.png"
+    "16": "img/favicon.png",
+    "32": "img/favicon.png"
   },
   "action": {
     "default_popup": "main.html",
-    "default_icon": "favicon.png"
+    "default_icon": "img/favicon.png"
   },
   "permissions": [
     "tabs"
