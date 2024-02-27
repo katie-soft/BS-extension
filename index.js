@@ -12,10 +12,9 @@ const openUrl = () => {
       const adminUrl = currentUrl.replace(prodDomain, adminDomain);
       window.open(adminUrl, '_blank');
    } else if (currentUrl.includes(adminDomain)) {
-      const startIndex = currentUrl.indexOf('=') + 1;
-      const endIndex = currentUrl.indexOf('&');
-      const id = currentUrl.slice(startIndex, endIndex);
-      window.open(`${previewDomain}${id}`, '_blank')
+      const params = new URLSearchParams(currentUrl.split('?')[1]);
+      const id = params.get('post');
+      window.open(`${previewDomain}${id}`, '_blank');
    } else {
       alert('Расширение работает только на сайте БС');
    }
