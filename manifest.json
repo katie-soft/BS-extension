@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "BS Extension",
   "description": "Helps to edit BS articles",
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "16": "img/favicon.png",
     "32": "img/favicon.png"
@@ -12,6 +12,8 @@
     "default_icon": "img/favicon.png"
   },
   "permissions": [
-    "tabs"
-  ]
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": ["https://secrets.tinkoff.ru/", "https://secrets-wp.tcsgroup.io/"]
 }
