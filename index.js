@@ -4,7 +4,7 @@ const previewDomain = 'https://secrets.tinkoff.ru/preview/';
 
 const editButton = document.querySelector('#button-edit');
 const previewButton = document.querySelector('#button-preview');
-const copyButton = document.querySelector('#button-copy');
+const betaButton = document.querySelector('#button-hot-keys');
 
 const openUrl = () => {
   chrome.tabs.query({active: true, currentWindow: true}, tabs => {
@@ -24,6 +24,10 @@ const openUrl = () => {
 
 editButton.addEventListener('click', openUrl);
 previewButton.addEventListener('click', openUrl);
+betaButton.addEventListener('click', () => {
+  betaButton.classList.add('button_enabled');
+  addHotkeys();
+} )
 
 async function addHotkeys() {
 
@@ -35,30 +39,25 @@ async function addHotkeys() {
       async function getSelectionText(param) {
         let text = "";
         if (window.getSelection) {
-          if (param === 'h') {
+          if (param === 'H' || param === 'Р') {
             text = `<a href="">${window.getSelection().toString()}</a>`;
-          } else if (param === 's') {
+          } else if (param === 'S' || param === 'Ы') {
             text = `<strong>${window.getSelection().toString()}</strong>`;
-          } else if (param === 'x') {
+          } else if (param === 'X' || param === 'Ч') {
             text = '&nbsp;';
           }        
         } 
+        console.log(text);
         await navigator.clipboard.writeText(text);
       }
 
       document.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.shiftKey && checkPressedKeys(e.key)) {
+        const keys = ['H', 'S', 'X', 'Р', 'Ы', 'Ч'];
+        if (e.ctrlKey && keys.includes(e.key)) {
           e.preventDefault();
-          getSelectionText(e.key)
+          getSelectionText(e.key);
         }
       })
     },
   })
 }
-
-function checkPressedKeys(event) {
-  const keys = ['h', 's', 'x', 'р', 'ы', 'ч'];
-  return keys.includes(event.key);
-}
-
-addHotkeys();
