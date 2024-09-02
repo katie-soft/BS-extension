@@ -25,8 +25,6 @@ const openUrl = () => {
 editButton.addEventListener('click', openUrl);
 previewButton.addEventListener('click', openUrl);
 
-copyButton.addEventListener('click', addHotkeys);
-
 async function addHotkeys() {
 
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -37,17 +35,19 @@ async function addHotkeys() {
       async function getSelectionText(param) {
         let text = "";
         if (window.getSelection) {
-          if (param === 'a') {
+          if (param === 'h') {
             text = `<a href="">${window.getSelection().toString()}</a>`;
-          } else if (param === 'b') {
+          } else if (param === 's') {
             text = `<strong>${window.getSelection().toString()}</strong>`;
+          } else if (param === 'x') {
+            text = '&nbsp;';
           }        
         } 
         await navigator.clipboard.writeText(text);
       }
 
       document.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && e.key === 'a' || e.ctrlKey && e.key === 'b') {
+        if (e.ctrlKey && e.shiftKey && checkPressedKeys(e.key)) {
           e.preventDefault();
           getSelectionText(e.key)
         }
@@ -55,3 +55,10 @@ async function addHotkeys() {
     },
   })
 }
+
+function checkPressedKeys(event) {
+  const keys = ['h', 's', 'x', 'р', 'ы', 'ч'];
+  return keys.includes(event.key);
+}
+
+addHotkeys();
