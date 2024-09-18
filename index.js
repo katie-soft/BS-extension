@@ -38,7 +38,7 @@ async function addHotkeys() {
     func: () => {
       async function getSelectionText(param) {
         let text = "";
-        if (window.getSelection) {
+        if (window.getSelection()) {
           switch (param) {
             case('X'):
             case('Ч'):
@@ -54,10 +54,17 @@ async function addHotkeys() {
               break;
             case('H'):
             case('Р'):
-               text = `<a href="">${window.getSelection().toString()}</a>`;
-               break;
+              let link = '';
+              await navigator.clipboard.readText().then(data => {
+                if (data.startsWith('https://')) {
+                  link += data;
+                }
+              });
+              text = `<a href="${link}">${window.getSelection().toString()}</a>`;
+              break;
           }     
         } 
+        
         await navigator.clipboard.writeText(text);
       }
 
