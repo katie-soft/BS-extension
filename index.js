@@ -39,20 +39,30 @@ async function addHotkeys() {
       async function getSelectionText(param) {
         let text = "";
         if (window.getSelection) {
-          if (param === 'H' || param === 'Р') {
-            text = `<a href="">${window.getSelection().toString()}</a>`;
-          } else if (param === 'S' || param === 'Ы') {
-            text = `<strong>${window.getSelection().toString()}</strong>`;
-          } else if (param === 'X' || param === 'Ч') {
-            text = '&nbsp;';
-          }        
+          switch (param) {
+            case('X'):
+            case('Ч'):
+              text = '&nbsp;';
+              break;
+            case('S'):
+            case('Ы'):
+              text = `<strong>${window.getSelection().toString()}</strong>`;
+              break;
+            case('Y'):
+            case('Н'):
+              text = `<mark>${window.getSelection().toString()}</mark>`;
+              break;
+            case('H'):
+            case('Р'):
+               text = `<a href="">${window.getSelection().toString()}</a>`;
+               break;
+          }     
         } 
-        console.log(text);
         await navigator.clipboard.writeText(text);
       }
 
       document.addEventListener('keydown', (e) => {
-        const keys = ['H', 'S', 'X', 'Р', 'Ы', 'Ч'];
+        const keys = ['H', 'S', 'X', 'Р', 'Ы', 'Ч', 'Y', 'Н'];
         if (e.ctrlKey && keys.includes(e.key)) {
           e.preventDefault();
           getSelectionText(e.key);
