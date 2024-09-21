@@ -56,7 +56,7 @@ async function addHotkeys() {
             case('Р'):
               let link = '';
               await navigator.clipboard.readText().then(data => {
-                if (data.startsWith('https://')) {
+                if (data.startsWith('http')) {
                   link += data;
                 }
               });
