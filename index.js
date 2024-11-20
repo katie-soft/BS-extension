@@ -1,4 +1,4 @@
-const adminDomain = 'secrets-wp.tcsgroup.io';
+const adminDomain = 'wp.secrets.tinkoff.ru';
 const prodDomain = 'secrets.tinkoff.ru';
 const previewDomain = 'https://secrets.tinkoff.ru/preview/';
 
