@@ -9,7 +9,7 @@ const betaButton = document.querySelector('#button-hot-keys');
 const openUrl = () => {
   chrome.tabs.query({active: true, currentWindow: true}, tabs => {
     const currentUrl = tabs[0].url;
-    if (currentUrl.includes(prodDomain)) {
+    if (currentUrl.includes(prodDomain) && !currentUrl.includes('wp')) {
       const adminUrl = currentUrl.replace(prodDomain, adminDomain);
       window.open(adminUrl, '_blank');
    } else if (currentUrl.includes(adminDomain)) {
