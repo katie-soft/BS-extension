@@ -15,5 +15,5 @@
     "tabs",
     "scripting"
   ],
-  "host_permissions": ["https://secrets.tinkoff.ru/", "https://secrets-wp.tcsgroup.io/"]
+  "host_permissions": ["https://secrets.tinkoff.ru/", "https://wp.secrets.tinkoff.ru/"]
 }
