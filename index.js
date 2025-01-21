@@ -1,6 +1,6 @@
-const adminDomain = 'wp.secrets.tinkoff.ru';
-const prodDomain = 'secrets.tinkoff.ru';
-const previewDomain = 'https://secrets.tinkoff.ru/preview/';
+const adminDomain = 'wp.secrets.tbank.ru';
+const prodDomain = 'secrets.tbank.ru';
+const previewDomain = 'https://secrets.tbank.ru/preview/';
 
 const editButton = document.querySelector('#button-edit');
 const previewButton = document.querySelector('#button-preview');
